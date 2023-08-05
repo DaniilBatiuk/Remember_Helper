@@ -9,4 +9,10 @@ export class AuthDto {
   })
   @IsString()
   password: string;
+
+  @MinLength(2, {
+    message: 'Name must be at least 2 characters long',
+  })
+  @IsString()
+  name: string;
 }
