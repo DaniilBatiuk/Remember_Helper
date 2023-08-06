@@ -6,15 +6,16 @@ import {
 } from '@nestjs/common';
 import { User } from '@prisma/client';
 import { PrismaService } from 'src/prisma.service';
-import { AuthDto } from './auth.dto';
+import { AuthDto } from './dto/auth.dto';
 import { hash, verify } from 'argon2';
 import { JwtService } from '@nestjs/jwt';
+import { LoginDto } from './dto/login.dto';
 
 @Injectable()
 export class AuthService {
   constructor(private prisma: PrismaService, private jwt: JwtService) {}
 
-  async login(dto: AuthDto) {
+  async login(dto: LoginDto) {
     const user = await this.validateUser(dto);
 
     const tokens = await this.issueToken(user.id);
@@ -26,7 +27,7 @@ export class AuthService {
 
   async getNewTokens(refreshToken: string) {
     const result = await this.jwt.verifyAsync(refreshToken);
-    if (result) throw new UnauthorizedException('Invalid refresh token');
+    if (!result) throw new UnauthorizedException('Invalid refresh token');
 
     const user = await this.prisma.user.findUnique({
       where: {
@@ -86,7 +87,7 @@ export class AuthService {
     };
   }
 
-  private async validateUser(dto: AuthDto) {
+  private async validateUser(dto: AuthDto | LoginDto) {
     const user = await this.prisma.user.findUnique({
       where: {
         email: dto.email,
