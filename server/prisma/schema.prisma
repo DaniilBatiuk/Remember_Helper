@@ -8,10 +8,49 @@ datasource db {
 }
 
 model User {
-  id        Int      @id @default(autoincrement())
-  name      String
-  email     String   @unique
-  password  String
+  id           Int          @id @default(autoincrement())
+  name         String
+  email        String       @unique
+  password     String
+  dictionaries Dictionary[]
+
   createdAt DateTime @default(now()) @map("created_at")
   undatedAt DateTime @updatedAt @map("updated_at")
+}
+
+model Dictionary {
+  id     Int    @id @default(autoincrement())
+  name   String
+  userId Int    @map("user_id")
+  user   User   @relation(fields: [userId], references: [id])
+  words  Word[]
+
+  createdAt DateTime  @default(now()) @map("created_at")
+  updatedAt DateTime? @updatedAt @map("updated_at")
+
+  @@unique([userId, name])
+}
+
+model Word {
+  id           Int           @id @default(autoincrement())
+  value        String
+  dictionaryId Int           @map("dictionary_id")
+  dictionary   Dictionary    @relation(fields: [dictionaryId], references: [id])
+  translations Translation[]
+
+  createdAt DateTime  @default(now()) @map("created_at")
+  updatedAt DateTime? @updatedAt @map("updated_at")
+
+  @@unique([dictionaryId, value])
+}
+
+model Translation {
+  id        Int       @id @default(autoincrement())
+  value     String
+  wordId    Int       @map("word_id")
+  word      Word      @relation(fields: [wordId], references: [id])
+  createdAt DateTime  @default(now()) @map("created_at")
+  updatedAt DateTime? @updatedAt @map("updated_at")
+
+  @@unique([wordId, value])
 }
