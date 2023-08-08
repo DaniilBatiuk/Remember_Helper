@@ -1,4 +1,54 @@
-import { Injectable } from '@nestjs/common';
+import {
+  BadRequestException,
+  Injectable,
+  NotFoundException,
+} from '@nestjs/common';
+import { UserDto } from './dto/user.dto';
+import { DictionaryDto } from './dto/dictionary.dto';
+import { PrismaService } from 'src/prisma.service';
+import { returnUserObject } from './return-user-object';
+import { Prisma } from '@prisma/client';
 
 @Injectable()
-export class UserService {}
+export class UserService {
+  constructor(private prisma: PrismaService) {}
+
+  //   createDictionary(id: number, dto: DictionaryDto) {}
+
+  async updateProfile(id: number, dto: UserDto) {
+    const isSameUser = await this.prisma.user.findUnique({
+      where: { email: dto.email },
+    });
+
+    if (isSameUser && id !== isSameUser.id) {
+      throw new BadRequestException('User already exists');
+    }
+
+    return this.prisma.user.update({
+      where: {
+        id,
+      },
+      data: {
+        email: dto.email,
+        name: dto.name,
+      },
+    });
+  }
+
+  async byId(id: number, selectObject: Prisma.UserSelect = {}) {
+    const user = await this.prisma.user.findUnique({
+      where: {
+        id,
+      },
+      select: {
+        ...returnUserObject,
+        dictionaries: true,
+        ...selectObject,
+      },
+    });
+
+    if (!user) throw new NotFoundException('User not found');
+
+    return user;
+  }
+}
