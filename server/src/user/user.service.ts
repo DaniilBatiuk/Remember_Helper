@@ -4,7 +4,6 @@ import {
   NotFoundException,
 } from '@nestjs/common';
 import { UserDto } from './dto/user.dto';
-import { DictionaryDto } from './dto/dictionary.dto';
 import { PrismaService } from 'src/prisma.service';
 import { returnUserObject } from './return-user-object';
 import { Prisma } from '@prisma/client';
@@ -12,8 +11,6 @@ import { Prisma } from '@prisma/client';
 @Injectable()
 export class UserService {
   constructor(private prisma: PrismaService) {}
-
-  //   createDictionary(id: number, dto: DictionaryDto) {}
 
   async updateProfile(id: number, dto: UserDto) {
     const isSameUser = await this.prisma.user.findUnique({
@@ -35,7 +32,7 @@ export class UserService {
     });
   }
 
-  async byId(id: number, selectObject: Prisma.UserSelect = {}) {
+  public async byId(id: number, selectObject: Prisma.UserSelect = {}) {
     const user = await this.prisma.user.findUnique({
       where: {
         id,

@@ -12,7 +12,6 @@ import { UserService } from './user.service';
 import { Auth } from 'src/auth/decorators/auth.decorator';
 import { CurrentUser } from 'src/auth/decorators/user.decorator';
 import { UserDto } from './dto/user.dto';
-import { DictionaryDto } from './dto/dictionary.dto';
 
 @Controller('user')
 export class UserController {
@@ -31,15 +30,4 @@ export class UserController {
   async updateProfile(@CurrentUser('id') id: number, @Body() dto: UserDto) {
     return this.userService.updateProfile(id, dto);
   }
-
-  // @UsePipes(new ValidationPipe())
-  // @HttpCode(200)
-  // @Auth()
-  // @Post('create/dictionary')
-  // async createDictionary(
-  //   @CurrentUser('id') id: number,
-  //   @Body() dto: DictionaryDto,
-  // ) {
-  //   return this.userService.createDictionary(id, dto);
-  // }
 }

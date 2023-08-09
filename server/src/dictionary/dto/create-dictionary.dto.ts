@@ -1,6 +1,6 @@
 import { IsString } from 'class-validator';
 
-export class DictionaryDto {
+export class CreateDictionaryDto {
   @IsString()
   name: string;
 }
