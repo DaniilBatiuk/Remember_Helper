@@ -18,7 +18,7 @@ export class UserService {
     });
 
     if (isSameUser && id !== isSameUser.id) {
-      throw new BadRequestException('User already exists');
+      throw new BadRequestException('User with this email already exists');
     }
 
     return this.prisma.user.update({

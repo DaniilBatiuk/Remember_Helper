@@ -1,7 +1,13 @@
-import { BadRequestException, Injectable } from '@nestjs/common';
+import {
+  BadRequestException,
+  Injectable,
+  NotFoundException,
+} from '@nestjs/common';
 import { CreateDictionaryDto } from './dto/create-dictionary.dto';
 import { UpdateDictionaryDto } from './dto/update-dictionary.dto';
 import { PrismaService } from 'src/prisma.service';
+import { returnDictionaryObject } from './return-dictionary-object';
+import { DESTRUCTION } from 'dns';
 
 @Injectable()
 export class DictionaryService {
@@ -27,22 +33,83 @@ export class DictionaryService {
           },
         },
       },
+      select: {
+        ...returnDictionaryObject,
+      },
     });
   }
 
-  findAll() {
-    return `This action returns all dictionary`;
+  findAll(id: number) {
+    return this.prisma.dictionary.findMany({
+      where: {
+        userId: id,
+      },
+      orderBy: {
+        createdAt: 'desc',
+      },
+      select: {
+        ...returnDictionaryObject,
+      },
+    });
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} dictionary`;
+  async findOne(id: number) {
+    const dictionary = await this.tryToFind(id);
+
+    return dictionary;
   }
 
-  update(id: number, updateDictionaryDto: UpdateDictionaryDto) {
-    return `This action updates a #${id} dictionary`;
+  async update(id: number, userId: number, dto: UpdateDictionaryDto) {
+    await this.tryToFind(id);
+
+    const oldDictionary = await this.prisma.dictionary.findFirst({
+      where: {
+        name: dto.name,
+        userId: userId,
+      },
+    });
+
+    if (oldDictionary)
+      throw new BadRequestException('Dictionary with this name already exists');
+
+    return this.prisma.dictionary.update({
+      where: {
+        id,
+      },
+      data: {
+        name: dto.name,
+      },
+      select: {
+        ...returnDictionaryObject,
+      },
+    });
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} dictionary`;
+  async remove(id: number) {
+    await this.tryToFind(id);
+
+    return this.prisma.dictionary.delete({
+      where: {
+        id,
+      },
+      select: {
+        ...returnDictionaryObject,
+      },
+    });
+  }
+
+  async tryToFind(id: number) {
+    const dictionary = await this.prisma.dictionary.findUnique({
+      where: {
+        id: id,
+      },
+      select: {
+        ...returnDictionaryObject,
+      },
+    });
+
+    if (!dictionary) throw new NotFoundException('Dictionary not found');
+
+    return dictionary;
   }
 }
