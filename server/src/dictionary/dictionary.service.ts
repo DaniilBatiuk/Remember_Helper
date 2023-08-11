@@ -7,7 +7,6 @@ import { CreateDictionaryDto } from './dto/create-dictionary.dto';
 import { UpdateDictionaryDto } from './dto/update-dictionary.dto';
 import { PrismaService } from 'src/prisma.service';
 import { returnDictionaryObject } from './return-dictionary-object';
-import { DESTRUCTION } from 'dns';
 
 @Injectable()
 export class DictionaryService {

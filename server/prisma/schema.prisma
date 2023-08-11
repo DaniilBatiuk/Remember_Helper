@@ -45,10 +45,11 @@ model Word {
 }
 
 model Translation {
-  id        Int       @id @default(autoincrement())
-  value     String
-  wordId    Int       @map("word_id")
-  word      Word      @relation(fields: [wordId], references: [id])
+  id     Int    @id @default(autoincrement())
+  value  String
+  wordId Int    @map("word_id")
+  word   Word   @relation(fields: [wordId], references: [id])
+
   createdAt DateTime  @default(now()) @map("created_at")
   updatedAt DateTime? @updatedAt @map("updated_at")
 

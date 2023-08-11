@@ -39,7 +39,24 @@ export class UserService {
       },
       select: {
         ...returnUserObject,
-        dictionaries: true,
+        dictionaries: {
+          select: {
+            id: true,
+            name: true,
+            words: {
+              select: {
+                id: true,
+                value: true,
+                translations: {
+                  select: {
+                    id: true,
+                    value: true,
+                  },
+                },
+              },
+            },
+          },
+        },
         ...selectObject,
       },
     });
