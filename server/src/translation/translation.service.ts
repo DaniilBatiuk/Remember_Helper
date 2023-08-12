@@ -2,6 +2,7 @@ import { BadRequestException, Injectable } from '@nestjs/common';
 import { CreateTranslationDto } from './dto/create-translation.dto';
 import { PrismaService } from 'src/prisma.service';
 import { returnTranslationObject } from './return-translation-object';
+import { UpdateTranslationDto } from './dto/update-translation.dto';
 
 @Injectable()
 export class TranslationService {
@@ -28,6 +29,20 @@ export class TranslationService {
             id: dto.wordId,
           },
         },
+      },
+      select: {
+        ...returnTranslationObject,
+      },
+    });
+  }
+
+  async update(dto: UpdateTranslationDto) {
+    return await this.prisma.translation.update({
+      where: {
+        id: dto.id,
+      },
+      data: {
+        value: dto.value,
       },
       select: {
         ...returnTranslationObject,

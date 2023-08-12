@@ -7,6 +7,7 @@ import { CreateWordDto } from './dto/create-word.dto';
 import { PrismaService } from 'src/prisma.service';
 import { returnWordObject } from './return-word-object';
 import { TranslationService } from 'src/translation/translation.service';
+import { UpdateWordDto } from './dto/update-word.dto';
 
 @Injectable()
 export class WordService {
@@ -47,6 +48,41 @@ export class WordService {
     );
 
     return await this.byId(wordId.id);
+  }
+
+  async update(id: number, dto: UpdateWordDto) {
+    const oldWord = await this.prisma.word.findFirst({
+      where: {
+        id: id,
+      },
+    });
+
+    if (!oldWord)
+      throw new BadRequestException('This word is not exist in the dictionary');
+    else if (oldWord.value === dto.value)
+      throw new BadRequestException('This word is already in the dictionary');
+
+    if (oldWord.value !== dto.value) {
+      await this.prisma.word.update({
+        where: {
+          id,
+        },
+        data: {
+          value: dto.value,
+        },
+      });
+    }
+
+    await Promise.all(
+      dto.translations.map(async el => {
+        await this.translationService.update({
+          value: el.translations,
+          id: el.translationsId,
+        });
+      }),
+    );
+
+    return await this.byId(id);
   }
 
   public async byId(id: number) {
