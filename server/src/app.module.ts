@@ -10,7 +10,14 @@ import { WordModule } from './word/word.module';
 import { TranslationModule } from './translation/translation.module';
 
 @Module({
-  imports: [ConfigModule.forRoot(), AuthModule, UserModule, DictionaryModule, WordModule, TranslationModule],
+  imports: [
+    ConfigModule.forRoot(),
+    AuthModule,
+    UserModule,
+    DictionaryModule,
+    WordModule,
+    TranslationModule,
+  ],
   controllers: [AppController],
   providers: [AppService, PrismaService],
 })

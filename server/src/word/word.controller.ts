@@ -42,11 +42,11 @@ export class WordController {
     return this.wordService.update(+id, dto);
   }
 
-  // @UsePipes(new ValidationPipe())
-  // @HttpCode(200)
-  // @Auth()
-  // @Delete(':id')
-  // remove(@Param('id') id: string) {
-  //   return this.wordService.remove(+id);
-  // }
+  @UsePipes(new ValidationPipe())
+  @HttpCode(200)
+  @Auth()
+  @Delete(':id')
+  remove(@Param('id') id: string) {
+    return this.wordService.remove(+id);
+  }
 }

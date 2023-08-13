@@ -1,8 +1,4 @@
-import {
-  BadRequestException,
-  Injectable,
-  NotFoundException,
-} from '@nestjs/common';
+import { BadRequestException, Injectable, NotFoundException } from '@nestjs/common';
 import { CreateDictionaryDto } from './dto/create-dictionary.dto';
 import { UpdateDictionaryDto } from './dto/update-dictionary.dto';
 import { PrismaService } from 'src/prisma.service';
@@ -20,8 +16,7 @@ export class DictionaryService {
       },
     });
 
-    if (oldDictionary)
-      throw new BadRequestException('Dictionary with this name already exists');
+    if (oldDictionary) throw new BadRequestException('Dictionary with this name already exists');
 
     return await this.prisma.dictionary.create({
       data: {
@@ -68,8 +63,7 @@ export class DictionaryService {
       },
     });
 
-    if (oldDictionary)
-      throw new BadRequestException('Dictionary with this name already exists');
+    if (oldDictionary) throw new BadRequestException('Dictionary with this name already exists');
 
     return this.prisma.dictionary.update({
       where: {

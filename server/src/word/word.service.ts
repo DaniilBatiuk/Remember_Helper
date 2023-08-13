@@ -1,8 +1,4 @@
-import {
-  BadRequestException,
-  Injectable,
-  NotFoundException,
-} from '@nestjs/common';
+import { BadRequestException, Injectable, NotFoundException } from '@nestjs/common';
 import { CreateWordDto } from './dto/create-word.dto';
 import { PrismaService } from 'src/prisma.service';
 import { returnWordObject } from './return-word-object';
@@ -11,10 +7,7 @@ import { UpdateWordDto } from './dto/update-word.dto';
 
 @Injectable()
 export class WordService {
-  constructor(
-    private prisma: PrismaService,
-    private translationService: TranslationService,
-  ) {}
+  constructor(private prisma: PrismaService, private translationService: TranslationService) {}
 
   async create(dto: CreateWordDto) {
     const oldWord = await this.prisma.word.findFirst({
@@ -24,8 +17,7 @@ export class WordService {
       },
     });
 
-    if (oldWord)
-      throw new BadRequestException('This word is already in the dictionary');
+    if (oldWord) throw new BadRequestException('This word is already in the dictionary');
 
     const wordId = await this.prisma.word.create({
       data: {
@@ -57,8 +49,7 @@ export class WordService {
       },
     });
 
-    if (!oldWord)
-      throw new BadRequestException('This word is not exist in the dictionary');
+    if (!oldWord) throw new BadRequestException('This word is not exist in the dictionary');
     else if (oldWord.value === dto.value)
       throw new BadRequestException('This word is already in the dictionary');
 
@@ -83,6 +74,27 @@ export class WordService {
     );
 
     return await this.byId(id);
+  }
+
+  async remove(id: number) {
+    const translation = (await this.byId(id)).translations;
+
+    await Promise.all(
+      translation.map(async el => {
+        await this.translationService.remove({
+          id: el.id,
+        });
+      }),
+    );
+
+    return this.prisma.word.delete({
+      where: {
+        id,
+      },
+      select: {
+        ...returnWordObject,
+      },
+    });
   }
 
   public async byId(id: number) {

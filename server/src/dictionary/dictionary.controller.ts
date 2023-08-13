@@ -24,10 +24,7 @@ export class DictionaryController {
   @HttpCode(200)
   @Auth()
   @Post('create')
-  async createDictionary(
-    @CurrentUser('id') id: number,
-    @Body() dto: CreateDictionaryDto,
-  ) {
+  async createDictionary(@CurrentUser('id') id: number, @Body() dto: CreateDictionaryDto) {
     return this.dictionaryService.create(id, dto);
   }
 

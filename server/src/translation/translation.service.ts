@@ -3,6 +3,7 @@ import { CreateTranslationDto } from './dto/create-translation.dto';
 import { PrismaService } from 'src/prisma.service';
 import { returnTranslationObject } from './return-translation-object';
 import { UpdateTranslationDto } from './dto/update-translation.dto';
+import { DeleteTranslationDto } from './dto/delete-translation.dto';
 
 @Injectable()
 export class TranslationService {
@@ -16,10 +17,7 @@ export class TranslationService {
       },
     });
 
-    if (oldWord)
-      throw new BadRequestException(
-        'This translation of word has already exist',
-      );
+    if (oldWord) throw new BadRequestException('This translation of word has already exist');
 
     return await this.prisma.translation.create({
       data: {
@@ -43,6 +41,17 @@ export class TranslationService {
       },
       data: {
         value: dto.value,
+      },
+      select: {
+        ...returnTranslationObject,
+      },
+    });
+  }
+
+  remove(dto: DeleteTranslationDto) {
+    return this.prisma.translation.delete({
+      where: {
+        id: dto.id,
       },
       select: {
         ...returnTranslationObject,
