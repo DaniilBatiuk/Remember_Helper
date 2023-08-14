@@ -3,12 +3,13 @@ import { UserDto } from './dto/user.dto';
 import { PrismaService } from 'src/prisma.service';
 import { returnUserObject } from './return-user-object';
 import { Prisma } from '@prisma/client';
+import { UserByIdResponse, UserResponse } from './response';
 
 @Injectable()
 export class UserService {
   constructor(private prisma: PrismaService) {}
 
-  async updateProfile(id: number, dto: UserDto) {
+  async updateProfile(id: number, dto: UserDto): Promise<UserResponse> {
     const isSameUser = await this.prisma.user.findUnique({
       where: { email: dto.email },
     });
@@ -25,10 +26,13 @@ export class UserService {
         email: dto.email,
         name: dto.name,
       },
+      select: {
+        ...returnUserObject,
+      },
     });
   }
 
-  public async byId(id: number, selectObject: Prisma.UserSelect = {}) {
+  public async byId(id: number, selectObject: Prisma.UserSelect = {}): Promise<UserByIdResponse> {
     const user = await this.prisma.user.findUnique({
       where: {
         id,

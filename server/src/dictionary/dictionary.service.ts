@@ -3,12 +3,13 @@ import { CreateDictionaryDto } from './dto/create-dictionary.dto';
 import { UpdateDictionaryDto } from './dto/update-dictionary.dto';
 import { PrismaService } from 'src/prisma.service';
 import { returnDictionaryObject } from './return-dictionary-object';
+import { DictionaryResponse } from './response/intex';
 
 @Injectable()
 export class DictionaryService {
   constructor(private prisma: PrismaService) {}
 
-  async create(id: number, dto: CreateDictionaryDto) {
+  async create(id: number, dto: CreateDictionaryDto): Promise<DictionaryResponse> {
     const oldDictionary = await this.prisma.dictionary.findFirst({
       where: {
         name: dto.name,
@@ -33,7 +34,7 @@ export class DictionaryService {
     });
   }
 
-  findAll(id: number) {
+  findAll(id: number): Promise<DictionaryResponse[]> {
     return this.prisma.dictionary.findMany({
       where: {
         userId: id,
@@ -53,7 +54,7 @@ export class DictionaryService {
     return dictionary;
   }
 
-  async update(id: number, userId: number, dto: UpdateDictionaryDto) {
+  async update(id: number, userId: number, dto: UpdateDictionaryDto): Promise<DictionaryResponse> {
     await this.tryToFind(id);
 
     const oldDictionary = await this.prisma.dictionary.findFirst({
@@ -78,7 +79,7 @@ export class DictionaryService {
     });
   }
 
-  async remove(id: number) {
+  async remove(id: number): Promise<DictionaryResponse> {
     await this.tryToFind(id);
 
     return this.prisma.dictionary.delete({
@@ -91,7 +92,7 @@ export class DictionaryService {
     });
   }
 
-  async tryToFind(id: number) {
+  async tryToFind(id: number): Promise<DictionaryResponse> {
     const dictionary = await this.prisma.dictionary.findUnique({
       where: {
         id: id,

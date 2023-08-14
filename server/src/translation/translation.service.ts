@@ -4,12 +4,13 @@ import { PrismaService } from 'src/prisma.service';
 import { returnTranslationObject } from './return-translation-object';
 import { UpdateTranslationDto } from './dto/update-translation.dto';
 import { DeleteTranslationDto } from './dto/delete-translation.dto';
+import { TranslationResponse } from './response';
 
 @Injectable()
 export class TranslationService {
   constructor(private prisma: PrismaService) {}
 
-  async create(dto: CreateTranslationDto) {
+  async create(dto: CreateTranslationDto): Promise<TranslationResponse> {
     const oldWord = await this.prisma.translation.findFirst({
       where: {
         value: dto.value,
@@ -34,7 +35,7 @@ export class TranslationService {
     });
   }
 
-  async update(dto: UpdateTranslationDto) {
+  async update(dto: UpdateTranslationDto): Promise<TranslationResponse> {
     return await this.prisma.translation.update({
       where: {
         id: dto.id,
@@ -48,7 +49,7 @@ export class TranslationService {
     });
   }
 
-  remove(dto: DeleteTranslationDto) {
+  remove(dto: DeleteTranslationDto): Promise<TranslationResponse> {
     return this.prisma.translation.delete({
       where: {
         id: dto.id,

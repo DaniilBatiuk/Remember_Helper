@@ -4,12 +4,13 @@ import { PrismaService } from 'src/prisma.service';
 import { returnWordObject } from './return-word-object';
 import { TranslationService } from 'src/translation/translation.service';
 import { UpdateWordDto } from './dto/update-word.dto';
+import { WordResponse } from './response';
 
 @Injectable()
 export class WordService {
   constructor(private prisma: PrismaService, private translationService: TranslationService) {}
 
-  async create(dto: CreateWordDto) {
+  async create(dto: CreateWordDto): Promise<WordResponse> {
     const oldWord = await this.prisma.word.findFirst({
       where: {
         value: dto.value,
@@ -42,7 +43,7 @@ export class WordService {
     return await this.byId(wordId.id);
   }
 
-  async update(id: number, dto: UpdateWordDto) {
+  async update(id: number, dto: UpdateWordDto): Promise<WordResponse> {
     const oldWord = await this.prisma.word.findFirst({
       where: {
         id: id,
@@ -76,7 +77,7 @@ export class WordService {
     return await this.byId(id);
   }
 
-  async remove(id: number) {
+  async remove(id: number): Promise<WordResponse> {
     const translation = (await this.byId(id)).translations;
 
     await Promise.all(
@@ -97,7 +98,7 @@ export class WordService {
     });
   }
 
-  public async byId(id: number) {
+  public async byId(id: number): Promise<WordResponse> {
     const word = await this.prisma.word.findUnique({
       where: {
         id,
