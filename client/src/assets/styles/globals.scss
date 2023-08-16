@@ -55,3 +55,39 @@ button {
   cursor: pointer;
   background-color: inherit;
 }
+
+/* Layout styles */
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Roboto' !important;
+  font-weight: 300;
+  font-size: 16px;
+
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  overflow: clip;
+}
+
+main {
+  flex: 1 1 auto;
+}
+
+[class*='__container'] {
+  max-width: 1310px;
+  margin: 0px auto;
+  padding: 0px 15px;
+  overflow-wrap: break-word;
+}
+
+%colorHover {
+  transition: color 0.2s ease;
+
+  &:hover {
+    color: #ece06c;
+  }
+}
