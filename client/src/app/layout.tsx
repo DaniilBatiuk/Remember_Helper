@@ -21,11 +21,13 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         />
       </head>
       <body className={inter.className}>
-        <Header />
-        <main>
-          <div className="main__container">{children}</div>
-        </main>
-        <Footer />
+        <div className="wrapper">
+          <Header />
+          <main>
+            <div className="main__container">{children}</div>
+          </main>
+          <Footer />
+        </div>
       </body>
     </html>
   );

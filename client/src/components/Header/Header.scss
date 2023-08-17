@@ -1,11 +1,12 @@
 @import '../../assets/styles/globals.scss';
 
 .header {
-  margin-top: 10px;
-  z-index: 10;
-  position: fixed;
+  position: relative;
   width: 100%;
-  overflow: hidden;
+  height: 100vh;
+  background-image: url('../../../public/Main.jpg');
+  background-size: cover;
+  background-position: center;
 
   &__container {
     display: flex;
