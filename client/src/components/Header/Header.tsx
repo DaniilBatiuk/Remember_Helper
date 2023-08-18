@@ -58,6 +58,14 @@ const Header: React.FC = () => {
           </svg>
         </button>
       </div>
+      <div className="header__container-2">
+        <h1 className="header__title">Learn Helper</h1>
+        <h2 className="header__subtitle">Transfer knowledge from your records to the head</h2>
+        <p className="header__text">
+          Create your dictionaries, help you to remember the contents of dictionaries with all
+          possible tests on created dictionaries and much more!
+        </p>
+      </div>
     </header>
   );
 };
