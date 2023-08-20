@@ -1,9 +1,11 @@
 .home {
   margin-top: 50px;
+  margin-bottom: 50px;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
+
   &__title {
     font-size: clamp(45px, 4vw, 50px);
     font-weight: 700;
@@ -75,5 +77,14 @@
       color: black;
       background-color: rgb(221, 221, 221);
     }
+  }
+
+  &__icon {
+    border-radius: 30%;
+    padding: 10px;
+    box-shadow: -1px 2px 16px 4px rgba(173, 173, 173, 0.74);
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 }
