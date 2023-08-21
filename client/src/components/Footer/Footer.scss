@@ -1,12 +1,26 @@
 .footer {
-  background-color: gray;
-  padding-bottom: 50px;
+  background-color: rgb(161, 161, 161);
+
   &__container {
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    margin-top: 20px;
+    margin-top: 30px;
     font-size: 20px;
+  }
+  &__list {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    gap: 50px;
+
+    @media (max-width: 552.98px) {
+      flex-direction: column;
+    }
+  }
+
+  &__love {
+    font-weight: 600;
+    text-align: center;
+    padding-top: 30px;
+    padding-bottom: 20px;
   }
 }
 .column {
@@ -16,17 +30,21 @@
 
   & a {
     align-self: flex-start;
+
+    @media (max-width: 552.98px) {
+      align-self: center;
+    }
   }
 
   &__logo {
-    width: 200px;
+    width: 150px;
   }
 
   &__texts {
     margin-top: 20px;
     display: flex;
     flex-direction: column;
-    row-gap: 5px;
+    row-gap: 15px;
   }
 
   &__text {
@@ -35,12 +53,13 @@
   &__title {
     font-weight: 600;
     font-size: 24px;
+    margin-bottom: 20px;
   }
 
   &__list {
     display: flex;
     flex-direction: column;
-    row-gap: 5px;
+    row-gap: 15px;
   }
 
   &__list-item {
@@ -49,9 +68,15 @@
   }
 }
 .contacts {
+  display: flex;
+  flex-direction: column;
+  row-gap: 15px;
+
   &__contact {
   }
+
   &__links {
+    margin-top: 10px;
     display: flex;
     align-items: center;
     justify-content: space-around;

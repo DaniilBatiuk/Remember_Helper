@@ -7,6 +7,7 @@
   background-image: url('../../../public/Main.jpg');
   background-size: cover;
   background-position: center;
+
   &__container {
     display: flex;
     align-items: center;
@@ -80,7 +81,7 @@
   &__body {
     @media (max-width: 767.98px) {
       position: fixed;
-      background-color: #3c4357;
+      background-color: rgb(161, 161, 161);
       width: 100vw;
       height: 100vh;
       left: -110%;
@@ -138,6 +139,16 @@
 .menu-open body .header .header__container .icon-menu .svg1 {
   display: none;
 }
+
 .menu-open body .header .header__container .icon-menu .svg2 {
   display: block;
+}
+
+.menu-open body .header .header__container .header__nav .header__body .header__list .header__item {
+  color: black;
+  @extend %colorHover;
+}
+
+.svg1 {
+  color: white;
 }
