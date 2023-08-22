@@ -1,6 +1,7 @@
 import React from 'react';
 import Logo from '../../../public/Logo.png';
 import './Footer.scss';
+import Image from 'next/image';
 
 const Footer: React.FC = () => {
   return (
@@ -9,7 +10,7 @@ const Footer: React.FC = () => {
         <div className="footer__list">
           <div className="footer__column column">
             <a href="/">
-              <img src={Logo.src} alt="Logo" className="column__logo" />
+              <Image src={Logo.src} alt="Logo" width={150} height={50} className="column__logo" />
             </a>
             <div className="column__texts">
               <p className="column__text">Created in 2023</p>
@@ -69,9 +70,9 @@ const Footer: React.FC = () => {
                     <g
                       fill="none"
                       stroke="currentColor"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      stroke-width="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth="2"
                     >
                       <path d="M4 8a4 4 0 0 1 4-4h8a4 4 0 0 1 4 4v8a4 4 0 0 1-4 4H8a4 4 0 0 1-4-4z" />
                       <path d="M9 12a3 3 0 1 0 6 0a3 3 0 1 0-6 0m7.5-4.5v.01" />

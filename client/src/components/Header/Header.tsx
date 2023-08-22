@@ -2,6 +2,8 @@
 import React from 'react';
 import './Header.scss';
 import Logo from '../../../public/Logo.png';
+import Image from 'next/image';
+import Link from 'next/link';
 
 const Header: React.FC = () => {
   const menuOpen = () => {
@@ -12,7 +14,7 @@ const Header: React.FC = () => {
     <header className="header">
       <div className="header__container">
         <a href="/">
-          <img src={Logo.src} alt="Logo" className="header__logo" />
+          <Image src={Logo.src} alt="Logo" width={200} height={75} className="header__logo" />
         </a>
         <nav className="header__nav">
           <div className="header__body">
@@ -21,7 +23,7 @@ const Header: React.FC = () => {
                 <a href="/">ABOUT</a>
               </li>
               <li className="header__item">
-                <a href="/">DICTIONARIES</a>
+                <Link href="/dictionaries">DICTIONARIES</Link>
               </li>
             </ul>
           </div>
@@ -57,14 +59,6 @@ const Header: React.FC = () => {
             />
           </svg>
         </button>
-      </div>
-      <div className="header__container-2">
-        <h1 className="header__title">Learn Helper</h1>
-        <h2 className="header__subtitle">Transfer knowledge from your records to the head</h2>
-        <p className="header__text">
-          Create your dictionaries, help you to remember the contents of dictionaries with all
-          possible tests on created dictionaries and much more!
-        </p>
       </div>
     </header>
   );

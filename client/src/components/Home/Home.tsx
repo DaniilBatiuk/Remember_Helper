@@ -1,10 +1,27 @@
 'use client';
 import React from 'react';
 import './Home.scss';
+import Image from 'next/image';
+import Main from '../../../public/Main.jpg';
 
 const Home: React.FC = () => {
   return (
     <section className="home">
+      <Image
+        src={Main.src}
+        alt="MainPhoto"
+        fill={true}
+        priority={true}
+        className="home__main-photo"
+      />
+      <div className="home__container-2">
+        <h1 className="home__title">Learn Helper</h1>
+        <h2 className="home__subtitle">Transfer knowledge from your records to the head</h2>
+        <p className="home__text">
+          Create your dictionaries, help you to remember the contents of dictionaries with all
+          possible tests on created dictionaries and much more!
+        </p>
+      </div>
       <h2 className="home__title">About</h2>
       <p className="home__about">
         Learn Helper is designed to help people with comprehension using various tests. To begin
