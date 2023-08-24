@@ -1,3 +1,4 @@
+import Dictionaries from '@/components/Dictionaries/Dictionaries';
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
@@ -5,7 +6,7 @@ export const metadata: Metadata = {
 };
 
 const DictionariesPage: React.FC = () => {
-  return <div>hi</div>;
+  return <Dictionaries />;
 };
 
 export default DictionariesPage;

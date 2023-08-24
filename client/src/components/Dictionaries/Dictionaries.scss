@@ -1,0 +1,73 @@
+.dictionaries {
+  margin-top: 30px;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 50px;
+
+  &__title {
+    font-size: clamp(35px, 4vw, 40px);
+    font-weight: 700;
+    text-align: center;
+  }
+
+  &__new {
+    margin-top: 40px;
+    background-color: rgb(54, 131, 233);
+    padding: 10px;
+    font-size: 20px;
+    font-weight: 600;
+    color: white;
+    border-radius: 10px;
+    transition: background-color 0.1s ease;
+    align-self: flex-end;
+
+    &:hover {
+      background-color: rgb(30, 68, 117);
+    }
+  }
+
+  &__list {
+    margin-top: 20px;
+    border: 2px solid rgb(148, 148, 148);
+    border-radius: 10px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    row-gap: 20px;
+  }
+
+  &__item {
+  }
+}
+
+.item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  &__title {
+    font-size: clamp(18px, 4vw, 20px);
+    font-weight: 500;
+  }
+
+  &__icons {
+    display: flex;
+    column-gap: 20px;
+  }
+
+  &__icon-delete {
+    transition: color 0.1s ease;
+    &:hover {
+      color: rgb(184, 42, 42);
+      cursor: pointer;
+    }
+  }
+
+  &__icon-update {
+    transition: color 0.1s ease;
+    &:hover {
+      color: rgb(75, 153, 241);
+      cursor: pointer;
+    }
+  }
+}
