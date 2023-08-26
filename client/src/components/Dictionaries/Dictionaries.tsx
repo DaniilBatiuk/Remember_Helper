@@ -1,11 +1,17 @@
 import React from 'react';
 import './Dictionaries.scss';
+import Input from '../UI/Input/Input';
 
 const Dictionaries: React.FC = () => {
   return (
     <section className="dictionaries">
       <h2 className="dictionaries__title">Dictionaries</h2>
-      <button className="dictionaries__new">New Dictionary</button>
+      <form className="dictionaries__create">
+        <Input type="text" placeholder="Name of new dictionary" />
+        <button type="submit" className="dictionaries__new">
+          Create
+        </button>
+      </form>
       <div className="dictionaries__list">
         <div className="dictionaries__item item">
           <div className="item__title">English-Russian</div>

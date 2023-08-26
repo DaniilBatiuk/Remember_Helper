@@ -10,16 +10,31 @@
     text-align: center;
   }
 
-  &__new {
+  &__create {
     margin-top: 40px;
+    display: flex;
+    column-gap: 50px;
+    justify-content: flex-end;
+    align-items: center;
+
+    & Input {
+      height: 42px;
+      max-width: 400px;
+    }
+
+    @media (max-width: 520px) {
+      column-gap: 20px;
+    }
+  }
+
+  &__new {
     background-color: rgb(54, 131, 233);
-    padding: 10px;
+    padding: 10px 30px;
     font-size: 20px;
     font-weight: 600;
     color: white;
     border-radius: 10px;
     transition: background-color 0.1s ease;
-    align-self: flex-end;
 
     &:hover {
       background-color: rgb(30, 68, 117);
@@ -30,7 +45,6 @@
     margin-top: 20px;
     border: 2px solid rgb(148, 148, 148);
     border-radius: 10px;
-    padding: 20px;
     display: flex;
     flex-direction: column;
     row-gap: 20px;
@@ -44,6 +58,21 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  padding: 20px;
+
+  &:nth-child(odd) {
+    padding-bottom: 0px;
+    padding-top: 0px;
+  }
+
+  &:first-child {
+    padding-top: 20px;
+  }
+
+  &:nth-child(even) {
+    background-color: rgb(148, 148, 148);
+    color: white;
+  }
 
   &__title {
     font-size: clamp(18px, 4vw, 20px);
