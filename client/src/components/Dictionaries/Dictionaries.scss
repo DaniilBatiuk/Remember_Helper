@@ -82,6 +82,10 @@
   &__icons {
     display: flex;
     column-gap: 20px;
+
+    @media (max-width: 520px) {
+      column-gap: 10px;
+    }
   }
 
   &__icon-delete {
@@ -97,6 +101,20 @@
     &:hover {
       color: rgb(75, 153, 241);
       cursor: pointer;
+    }
+  }
+
+  &__test {
+    background-color: rgb(54, 131, 233);
+    padding: 6px 18px;
+    font-size: 18px;
+    font-weight: 600;
+    color: white;
+    border-radius: 10px;
+    transition: background-color 0.1s ease;
+
+    &:hover {
+      background-color: rgb(30, 68, 117);
     }
   }
 }
