@@ -1,10 +1,13 @@
+@import '../../assets/styles/variables.scss';
+
 .footer {
-  background-color: rgb(161, 161, 161);
+  background-color: $backgroundColor;
 
   &__container {
     margin-top: 30px;
     font-size: 20px;
   }
+
   &__list {
     display: flex;
     justify-content: space-around;
@@ -23,6 +26,7 @@
     padding-bottom: 20px;
   }
 }
+
 .column {
   display: flex;
   flex-direction: column;

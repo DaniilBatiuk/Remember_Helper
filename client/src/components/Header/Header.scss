@@ -1,9 +1,10 @@
 @import '../../assets/styles/globals.scss';
+@import '../../assets/styles/variables.scss';
 
 .header {
   position: relative;
   width: 100%;
-  background-color: rgb(161, 161, 161);
+  background-color: $backgroundColor;
 
   &__container {
     display: flex;
@@ -48,7 +49,7 @@
   &__body {
     @media (max-width: 767.98px) {
       position: fixed;
-      background-color: rgb(161, 161, 161);
+      background-color: $backgroundColor;
       width: 100vw;
       height: 100vh;
       left: -110%;
