@@ -1,3 +1,5 @@
+@import '../../assets/styles/variables.scss';
+
 .dictionaries {
   margin-top: 30px;
   display: flex;
@@ -13,7 +15,7 @@
   &__create {
     margin-top: 40px;
     display: flex;
-    column-gap: 50px;
+    column-gap: 20px;
     justify-content: flex-end;
     align-items: center;
 
@@ -21,24 +23,10 @@
       height: 42px;
       max-width: 400px;
     }
-
-    @media (max-width: 520px) {
-      column-gap: 20px;
-    }
   }
 
   &__new {
-    background-color: rgb(54, 131, 233);
-    padding: 10px 30px;
-    font-size: 20px;
-    font-weight: 600;
-    color: white;
-    border-radius: 10px;
-    transition: background-color 0.1s ease;
-
-    &:hover {
-      background-color: rgb(30, 68, 117);
-    }
+    @include blueButton(10px, 30px);
   }
 
   &__list {
@@ -56,10 +44,14 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 20px;
+  padding: 13px 20px;
   border: 2px solid rgb(0, 66, 104);
   border-radius: 10px;
   transition: background-color 0.3s ease;
+
+  @media (max-width: 520px) {
+    padding: 10px 10px;
+  }
 
   &:hover {
     background-color: rgb(203, 239, 253);
@@ -96,16 +88,6 @@
   }
 
   &__test {
-    background-color: rgb(54, 131, 233);
-    padding: 6px 18px;
-    font-size: 18px;
-    font-weight: 600;
-    color: white;
-    border-radius: 10px;
-    transition: background-color 0.1s ease;
-
-    &:hover {
-      background-color: rgb(30, 68, 117);
-    }
+    @include blueButton(6px, 18px);
   }
 }

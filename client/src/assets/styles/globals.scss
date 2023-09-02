@@ -84,11 +84,3 @@ main {
   padding: 0px 15px;
   overflow-wrap: break-word;
 }
-
-%colorHover {
-  transition: color 0.2s ease;
-
-  &:hover {
-    color: #3998af;
-  }
-}

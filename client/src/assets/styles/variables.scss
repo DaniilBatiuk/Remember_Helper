@@ -1,1 +1,23 @@
-$backgroundColor: rgb(152, 206, 228);
+$backgroundColor: rgb(224, 244, 252);
+
+@mixin blueButton($p1, $p2) {
+  background-color: rgb(54, 131, 233);
+  padding: $p1 $p2;
+  font-size: 20px;
+  font-weight: 600;
+  color: white;
+  border-radius: 10px;
+  transition: background-color 0.1s ease;
+
+  &:hover {
+    background-color: rgb(30, 68, 117);
+  }
+}
+
+%colorHover {
+  transition: color 0.2s ease;
+
+  &:hover {
+    color: #f7e602;
+  }
+}
