@@ -1,0 +1,80 @@
+@import '../../assets/styles/variables.scss';
+
+.dictionary {
+  margin-top: 30px;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 50px;
+
+  &__title {
+    font-size: clamp(35px, 4vw, 40px);
+    font-weight: 700;
+    text-align: center;
+  }
+
+  &__form {
+    margin-top: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    column-gap: 20px;
+
+    & Input {
+      height: 42px;
+      max-width: 400px;
+    }
+  }
+
+  &__search {
+    display: flex;
+    width: 500px;
+    justify-content: space-between;
+    align-items: center;
+    column-gap: 10px;
+  }
+
+  &__search-button {
+    @include blueButton(0px, 15px);
+    height: 42px;
+  }
+
+  &__delete {
+    border: 1px solid rgb(156, 156, 156);
+    border-radius: 10px;
+    padding: 6px;
+    cursor: pointer;
+
+    &:hover {
+      background-color: rgb(228, 227, 227);
+    }
+  }
+
+  &__update {
+    border: 1px solid rgb(199, 199, 199);
+    border-radius: 10px;
+    padding: 6px;
+    cursor: pointer;
+
+    &:hover {
+      background-color: rgb(228, 227, 227);
+    }
+  }
+
+  &__add {
+    border: 1px solid rgb(199, 199, 199);
+    border-radius: 10px;
+    padding: 6px;
+    cursor: pointer;
+
+    &:hover {
+      background-color: rgb(228, 227, 227);
+    }
+  }
+
+  &__svg {
+    display: flex;
+    width: 200px;
+    align-items: center;
+    column-gap: 7px;
+  }
+}
