@@ -6,13 +6,13 @@ const Dictionary: React.FC = () => {
   return (
     <section className="dictionary">
       <h2 className="dictionary__title">English-Russian</h2>
-      <form className="dictionary__form">
-        <div className="dictionary__search">
+      <div className="dictionary__form">
+        <form className="dictionary__search">
           <Input type="text" placeholder="Search..." />
           <button type="submit" className="dictionary__search-button">
             Search
           </button>
-        </div>
+        </form>
         <div className="dictionary__svg">
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -52,7 +52,7 @@ const Dictionary: React.FC = () => {
             />
           </svg>
         </div>
-      </form>
+      </div>
     </section>
   );
 };

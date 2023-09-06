@@ -15,7 +15,7 @@
   &__create {
     margin-top: 40px;
     display: flex;
-    column-gap: 20px;
+    column-gap: 15px;
     justify-content: flex-end;
     align-items: center;
 
@@ -60,31 +60,6 @@
   &__title {
     font-size: clamp(18px, 4vw, 20px);
     font-weight: 500;
-  }
-
-  &__icons {
-    display: flex;
-    column-gap: 20px;
-
-    @media (max-width: 520px) {
-      column-gap: 10px;
-    }
-  }
-
-  &__icon-delete {
-    transition: color 0.1s ease;
-    &:hover {
-      color: rgb(184, 42, 42);
-      cursor: pointer;
-    }
-  }
-
-  &__icon-update {
-    transition: color 0.1s ease;
-    &:hover {
-      color: rgb(75, 153, 241);
-      cursor: pointer;
-    }
   }
 
   &__test {
